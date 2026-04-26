@@ -15,6 +15,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#positive">Benefits</a></li>
                 <li><a href="#negative">Concerns</a></li>
+                <li><a href="#brain-map">Brain Map</a></li>
                 <li><a href="#stats">Stats</a></li>
                 <li><a href="#calculator">Calculator</a></li>
                 <li><a href="#research">Research</a></li>
@@ -98,6 +99,73 @@
                 <div class="concern-card">
                     <h3>Academic Impact</h3>
                     <p>Excessive gaming can interfere with schoolwork and academic performance if not balanced with study time and responsibilities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="brain-map" class="brain-map-section">
+        <div class="container">
+            <h2>Interactive Brain Map</h2>
+            <p class="brain-intro">Click on different brain regions to discover how gaming affects them</p>
+            
+            <div class="brain-map-container">
+                <div class="brain-visualization">
+                    <svg viewBox="0 0 400 500" class="brain-svg">
+                        <!-- Head profile outline (2D side view) -->
+                        <circle cx="150" cy="120" r="80" class="brain-outline"/>
+                        <!-- Jaw/Chin -->
+                        <path d="M 90 180 Q 80 220 100 250 Q 150 270 200 250 Q 220 220 210 180" class="brain-outline"/>
+                        <!-- Neck -->
+                        <rect x="130" y="260" width="40" height="60" class="brain-outline"/>
+                        
+                        <!-- Nose (small line) -->
+                        <line x1="180" y1="100" x2="190" y2="130" class="brain-outline"/>
+                        
+                        <!-- Eye (small circle) -->
+                        <circle cx="180" cy="80" r="8" class="brain-outline"/>
+                        
+                        <!-- Mouth (curved line) -->
+                        <path d="M 120 160 Q 150 175 180 160" class="brain-outline"/>
+                        
+                        <!-- Ear outline -->
+                        <path d="M 220 100 Q 240 110 240 140 Q 235 160 220 160" class="brain-outline"/>
+                        
+                        <!-- Prefrontal Cortex (Front top) -->
+                        <path d="M 120 70 Q 140 55 160 65 Q 170 75 160 90 Q 140 95 120 85 Z" class="brain-region" data-region="prefrontal" fill="#667eea" opacity="0.8"/>
+                        
+                        <!-- Motor Cortex (Top center) -->
+                        <ellipse cx="150" cy="105" rx="25" ry="30" class="brain-region" data-region="motor" fill="#764ba2" opacity="0.8"/>
+                        
+                        <!-- Parietal Cortex (Top back) -->
+                        <path d="M 175 65 Q 200 55 215 80 Q 205 110 180 115 Q 175 90 175 65 Z" class="brain-region" data-region="parietal" fill="#f093fb" opacity="0.8"/>
+                        
+                        <!-- Temporal Lobe (Side front) -->
+                        <path d="M 100 110 Q 85 125 85 150 Q 95 160 110 150 Q 115 130 110 115 Z" class="brain-region" data-region="temporal" fill="#4facfe" opacity="0.8"/>
+                        
+                        <!-- Occipital Cortex (Back) -->
+                        <path d="M 205 110 Q 220 120 220 155 Q 210 165 195 155 Q 200 130 205 110 Z" class="brain-region" data-region="occipital" fill="#43e97b" opacity="0.8"/>
+                        
+                        <!-- Hippocampus (Deep center-left) -->
+                        <ellipse cx="130" cy="130" rx="12" ry="18" class="brain-region" data-region="hippocampus" fill="#fa709a" opacity="0.8"/>
+                        
+                        <!-- Amygdala (Deep center-right) -->
+                        <ellipse cx="170" cy="140" rx="10" ry="15" class="brain-region" data-region="amygdala" fill="#ffb366" opacity="0.8"/>
+                        
+                        <!-- Cerebellum (Bottom back - smaller) -->
+                        <path d="M 180 180 Q 205 185 210 210 Q 200 220 175 215 Q 172 200 180 180 Z" class="brain-region" data-region="cerebellum" fill="#a8edea" opacity="0.8"/>
+                        
+                        <!-- Brainstem (Center very bottom) -->
+                        <rect x="140" y="220" width="20" height="35" rx="10" fill="rgba(200,200,255,0.3)" opacity="0.6"/>
+                    </svg>
+                </div>
+                
+                <div class="brain-info-panel">
+                    <div id="brain-info" class="brain-info">
+                        <h3 id="region-name">Select a Brain Region</h3>
+                        <p id="region-description">Click on any colored region to learn how gaming affects it.</p>
+                        <div id="gaming-effects" class="gaming-effects"></div>
+                    </div>
                 </div>
             </div>
         </div>

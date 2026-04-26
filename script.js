@@ -1,3 +1,173 @@
+// Brain regions data
+const brainRegions = {
+    prefrontal: {
+        name: 'Prefrontal Cortex',
+        description: 'The command center for decision-making, planning, and impulse control.',
+        effects: [
+            {
+                category: 'Positive Effects',
+                items: [
+                    'Strategy games enhance planning abilities',
+                    'Improved decision-making under pressure',
+                    'Better impulse control through game mechanics'
+                ]
+            },
+            {
+                category: 'Concerns',
+                items: [
+                    'Excessive gaming may reduce impulse control',
+                    'Addiction can override planning abilities'
+                ]
+            }
+        ]
+    },
+    motor: {
+        name: 'Motor Cortex',
+        description: 'Controls voluntary muscle movements and hand-eye coordination.',
+        effects: [
+            {
+                category: 'Positive Effects',
+                items: [
+                    'Action games improve fine motor skills',
+                    'Enhanced hand-eye coordination',
+                    'Faster reaction times'
+                ]
+            },
+            {
+                category: 'Concerns',
+                items: [
+                    'Repetitive strain injury risk',
+                    'Prolonged sedentary behavior'
+                ]
+            }
+        ]
+    },
+    parietal: {
+        name: 'Parietal Cortex',
+        description: 'Processes sensory information like touch, temperature, and spatial awareness.',
+        effects: [
+            {
+                category: 'Positive Effects',
+                items: [
+                    'Improved visual-spatial skills',
+                    'Better 3D environment navigation',
+                    'Enhanced spatial reasoning'
+                ]
+            },
+            {
+                category: 'Concerns',
+                items: [
+                    'Sensory overload from intense graphics'
+                ]
+            }
+        ]
+    },
+    temporal: {
+        name: 'Temporal Lobe',
+        description: 'Responsible for hearing, memory processing, and emotional responses.',
+        effects: [
+            {
+                category: 'Positive Effects',
+                items: [
+                    'Improved auditory processing',
+                    'Enhanced memory consolidation',
+                    'Better audio-visual integration'
+                ]
+            },
+            {
+                category: 'Concerns',
+                items: [
+                    'Prolonged loud audio exposure',
+                    'Sleep disruption from late gaming'
+                ]
+            }
+        ]
+    },
+    occipital: {
+        name: 'Occipital Cortex',
+        description: 'The visual processing center of the brain, handling everything you see.',
+        effects: [
+            {
+                category: 'Positive Effects',
+                items: [
+                    'Enhanced visual attention',
+                    'Faster visual processing',
+                    'Improved color discrimination'
+                ]
+            },
+            {
+                category: 'Concerns',
+                items: [
+                    'Digital eye strain and fatigue',
+                    'Blue light suppression of melatonin',
+                    'Potential for myopia progression'
+                ]
+            }
+        ]
+    },
+    hippocampus: {
+        name: 'Hippocampus',
+        description: 'Critical for forming new memories and learning.',
+        effects: [
+            {
+                category: 'Positive Effects',
+                items: [
+                    'Enhanced memory formation',
+                    'Increased gray matter volume in gamers',
+                    'Better spatial memory from 3D games'
+                ]
+            },
+            {
+                category: 'Concerns',
+                items: [
+                    'Sleep disruption impairs memory consolidation'
+                ]
+            }
+        ]
+    },
+    amygdala: {
+        name: 'Amygdala',
+        description: 'Processes emotions and fear responses.',
+        effects: [
+            {
+                category: 'Positive Effects',
+                items: [
+                    'Emotional regulation training',
+                    'Stress relief through gaming',
+                    'Social bonding in multiplayer games'
+                ]
+            },
+            {
+                category: 'Concerns',
+                items: [
+                    'Overstimulation from intense games',
+                    'Increased anxiety from competitive stress'
+                ]
+            }
+        ]
+    },
+    cerebellum: {
+        name: 'Cerebellum',
+        description: 'Coordinates movement and balance.',
+        effects: [
+            {
+                category: 'Positive Effects',
+                items: [
+                    'Improved coordination and balance',
+                    'Enhanced motor learning',
+                    'Better timing and rhythm perception'
+                ]
+            },
+            {
+                category: 'Concerns',
+                items: [
+                    'Sedentary behavior reduces natural balance development'
+                ]
+            }
+        ]
+    }
+};
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -77,9 +247,70 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Chatbot functionality
     initializeChatbot();
+    
+    // Brain map functionality
+    initializeBrainMap();
 });
 
-// Chatbot knowledge base
+// Brain Map Functionality
+function initializeBrainMap() {
+    const brainRegions_elements = document.querySelectorAll('.brain-region');
+    
+    brainRegions_elements.forEach(element => {
+        element.addEventListener('click', () => {
+            const regionId = element.getAttribute('data-region');
+            displayBrainRegionInfo(regionId);
+            
+            // Update active state
+            brainRegions_elements.forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+        });
+        
+        element.addEventListener('mouseenter', () => {
+            if (!element.classList.contains('active')) {
+                element.style.opacity = '0.9';
+            }
+        });
+        
+        element.addEventListener('mouseleave', () => {
+            if (!element.classList.contains('active')) {
+                element.style.opacity = '0.7';
+            }
+        });
+    });
+    
+    // Display initial info
+    displayBrainRegionInfo('prefrontal');
+    document.querySelector('[data-region="prefrontal"]').classList.add('active');
+}
+
+function displayBrainRegionInfo(regionId) {
+    const region = brainRegions[regionId];
+    if (!region) return;
+    
+    document.getElementById('region-name').textContent = region.name;
+    document.getElementById('region-description').textContent = region.description;
+    
+    const effectsContainer = document.getElementById('gaming-effects');
+    effectsContainer.innerHTML = '';
+    
+    region.effects.forEach(effectGroup => {
+        effectGroup.items.forEach(item => {
+            const effectDiv = document.createElement('div');
+            effectDiv.className = 'effect-item';
+            effectDiv.innerHTML = `
+                <h4>${effectGroup.category}</h4>
+                <p>${item}</p>
+            `;
+            effectsContainer.appendChild(effectDiv);
+        });
+    });
+}
+
+// LLM API Configuration
+let huggingFaceAPIKey = localStorage.getItem('hf-api-key') || '';
+
+// Chatbot knowledge base (fallback responses)
 const chatbotResponses = {
     // Greetings and general
     'hello|hi|hey': 'Hello! I\'m here to support you with gaming habits and addiction concerns. What would you like to talk about?',
@@ -124,6 +355,26 @@ function initializeChatbot() {
     const sendBtn = document.getElementById('chat-send');
     const chatInput = document.getElementById('chat-input');
     const chatWidget = document.querySelector('.chatbot-widget');
+    const chatHeader = document.querySelector('.chatbot-header');
+
+    // Debug: Check if elements exist
+    if (!toggleBtn) console.error('chatbot-toggle not found');
+    if (!closeBtn) console.error('chatbot-close not found');
+    if (!sendBtn) console.error('chat-send not found');
+    if (!chatInput) console.error('chat-input not found');
+    if (!chatWidget) console.error('chatbot-widget not found');
+
+    if (!toggleBtn || !chatWidget) return; // Exit if elements don't exist
+
+    // Add API key setup button
+    if (!huggingFaceAPIKey && chatHeader) {
+        const setupBtn = document.createElement('button');
+        setupBtn.className = 'chatbot-setup-btn';
+        setupBtn.textContent = '⚙️ Setup API';
+        setupBtn.style.cssText = 'background: #4299e1; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; margin-left: 10px;';
+        setupBtn.addEventListener('click', setupAPIKey);
+        chatHeader.appendChild(setupBtn);
+    }
 
     // Toggle chat window
     toggleBtn.addEventListener('click', () => {
@@ -139,12 +390,17 @@ function initializeChatbot() {
     });
 
     // Send message
-    sendBtn.addEventListener('click', sendMessage);
-    chatInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            sendMessage();
-        }
-    });
+    if (sendBtn) {
+        sendBtn.addEventListener('click', sendMessage);
+    }
+    
+    if (chatInput) {
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    }
 
     function sendMessage() {
         const message = chatInput.value.trim();
@@ -156,9 +412,10 @@ function initializeChatbot() {
 
         // Get and add bot response
         setTimeout(() => {
-            const response = getBotResponse(message);
-            addMessageToChat(response, 'bot');
-        }, 500);
+            getBotResponseAsync(message).then(response => {
+                addMessageToChat(response, 'bot');
+            });
+        }, 300);
     }
 
     function addMessageToChat(text, sender) {
@@ -169,20 +426,92 @@ function initializeChatbot() {
         messagesDiv.appendChild(messageDiv);
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
+}
 
-    function getBotResponse(userMessage) {
-        const lowerMessage = userMessage.toLowerCase();
+function getBotResponse(userMessage) {
+    const lowerMessage = userMessage.toLowerCase().trim();
 
-        // Check for keyword matches
-        for (const [keywords, response] of Object.entries(chatbotResponses)) {
-            const keywordList = keywords.split('|');
-            if (keywordList.some(keyword => lowerMessage.includes(keyword))) {
-                return response;
-            }
+    // Check for keyword matches - prioritize longer matches first
+    const matches = [];
+    for (const [keywords, response] of Object.entries(chatbotResponses)) {
+        const keywordList = keywords.split('|');
+        const matchedKeyword = keywordList.find(keyword => {
+            const keywordTrimmed = keyword.trim();
+            return lowerMessage.includes(keywordTrimmed) || 
+                   keywordTrimmed.split(' ').every(word => lowerMessage.includes(word));
+        });
+        if (matchedKeyword) {
+            matches.push({ keyword: matchedKeyword, response: response, length: matchedKeyword.length });
+        }
+    }
+
+    // Return best match (longest keyword)
+    if (matches.length > 0) {
+        matches.sort((a, b) => b.length - a.length);
+        return matches[0].response;
+    }
+
+    // Default response if no match
+    return 'That\'s a great question! I can help with: gaming addiction symptoms, strategies to reduce gaming, coping techniques, motivation to quit, or resources. What would help you most?';
+}
+
+// Async LLM Response with Hugging Face
+async function getBotResponseAsync(userMessage) {
+    // If no API key, use fallback
+    if (!huggingFaceAPIKey) {
+        return getBotResponse(userMessage);
+    }
+
+    try {
+        const systemPrompt = `You are a supportive chatbot focused on gaming and brain health. Help users understand how gaming affects their brain, discuss gaming addiction, provide strategies to reduce gaming, and offer emotional support. Keep responses concise (2-3 sentences) and friendly. Always relate answers to gaming, brain health, or cognitive effects.`;
+        
+        const response = await fetch('https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.1', {
+            headers: { Authorization: `Bearer ${huggingFaceAPIKey}` },
+            method: 'POST',
+            body: JSON.stringify({
+                inputs: `${systemPrompt}\n\nUser: ${userMessage}\nAssistant:`,
+                parameters: {
+                    max_length: 150,
+                    temperature: 0.7,
+                    top_p: 0.9
+                }
+            }),
+        });
+
+        if (!response.ok) {
+            console.error('API Error:', response.status);
+            return getBotResponse(userMessage);
         }
 
-        // Default response if no match
-        return 'I understand. That\'s an important topic. Could you tell me more specifically about what you\'d like help with? I can discuss addiction, strategies for reduction, or coping techniques.';
+        const result = await response.json();
+        if (result[0]?.generated_text) {
+            let text = result[0].generated_text;
+            // Extract just the assistant response
+            const assistantIndex = text.lastIndexOf('Assistant:');
+            if (assistantIndex !== -1) {
+                text = text.substring(assistantIndex + 10).trim();
+            }
+            return text.substring(0, 300); // Limit length
+        }
+    } catch (error) {
+        console.error('API Error:', error);
+    }
+
+    // Fallback to keyword matching
+    return getBotResponse(userMessage);
+}
+
+// Setup API Key
+function setupAPIKey() {
+    const apiKey = prompt('Get a free API key from https://huggingface.co/settings/tokens\n\nPaste your HF API key:', huggingFaceAPIKey || '');
+    if (apiKey && apiKey.trim()) {
+        huggingFaceAPIKey = apiKey.trim();
+        localStorage.setItem('hf-api-key', huggingFaceAPIKey);
+        alert('✓ API key saved! Chatbot will now use AI for smarter responses.');
+        
+        // Hide setup button
+        const setupBtn = document.querySelector('.chatbot-setup-btn');
+        if (setupBtn) setupBtn.remove();
     }
 }
 
