@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming & Brain Research - Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Merriweather', Georgia, serif;
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .presentation-container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .slide {
+            display: none;
+            background: white;
+            border-radius: 16px;
+            padding: 4rem;
+            min-height: 600px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: fadeIn 0.5s ease;
+            color: #2d3748;
+            position: relative;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        .slide h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #764ba2;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 1rem;
+        }
+
+        .slide h3 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: #667eea;
+        }
+
+        .slide p {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            color: #4a5568;
+        }
+
+        .slide ul {
+            margin-left: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .slide li {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        .slide-subtitle {
+            font-size: 1.8rem;
+            color: #764ba2;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .slide-author {
+            font-size: 1.1rem;
+            color: #718096;
+            margin-top: 3rem;
+            font-style: italic;
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            font-size: 0.95rem;
+            color: #cbd5e0;
+            font-weight: 600;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 28px;
+            font-size: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        #slide-counter {
+            font-size: 1.1rem;
+            color: white;
+            font-weight: 600;
+            min-width: 120px;
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+
+        .keyboard-hint {
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 2rem;
+                min-height: auto;
+            }
+
+            .slide h1 {
+                font-size: 2rem;
+            }
+
+            .slide h2 {
+                font-size: 1.8rem;
+            }
+
+            .slide h3 {
+                font-size: 1.2rem;
+            }
+
+            .slide p {
+                font-size: 1rem;
+            }
+
+            .slide li {
+                font-size: 1rem;
+            }
+
+            .controls {
+                gap: 1rem;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .slide {
+                page-break-after: always;
+                box-shadow: none;
+                border-radius: 0;
+                padding: 2rem;
+            }
+
+            .controls, .keyboard-hint {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <h1>How Video Games Affect the Brain</h1>
+            <p class="slide-subtitle">Exploring the Science Behind Gaming and Cognitive Function</p>
+            <p style="margin-top: 4rem; font-size: 1.3rem; color: #667eea; font-weight: 600;">A Comprehensive Research Project</p>
+            <p class="slide-author">by Ilan Ravichandran</p>
+            <div class="slide-number">1 of 7</div>
+        </div>
+
+        <!-- Slide 2: Overview -->
+        <div class="slide">
+            <h2>Understanding the Impact</h2>
+            <p>Video games have become a significant part of modern culture, with billions of people playing worldwide.</p>
+            <h3>Key Questions:</h3>
+            <ul>
+                <li>What happens to our brains when we play games?</li>
+                <li>Are there cognitive benefits?</li>
+                <li>What are the potential risks?</li>
+                <li>How can we game responsibly?</li>
+            </ul>
+            <p style="margin-top: 2rem; color: #667eea; font-weight: 600;">Research shows that video games can have both positive and negative effects on brain function, structure, and behavior.</p>
+            <div class="slide-number">2 of 7</div>
+        </div>
+
+        <!-- Slide 3: Benefits -->
+        <div class="slide">
+            <h2>Positive Effects of Video Games</h2>
+            <h3>Enhanced Cognitive Skills</h3>
+            <p>Action games can improve attention, reaction time, and visual-spatial skills. Studies show gamers have better hand-eye coordination and faster processing speeds.</p>
+
+            <h3>Improved Problem-Solving</h3>
+            <p>Strategy and puzzle games enhance critical thinking, planning, and decision-making abilities. Players learn to think multiple steps ahead.</p>
+
+            <h3>Better Memory</h3>
+            <p>Gaming can improve both working memory and long-term memory. Complex games require players to remember rules, strategies, and patterns.</p>
+
+            <div class="slide-number">3 of 7</div>
+        </div>
+
+        <!-- Slide 4: Concerns -->
+        <div class="slide">
+            <h2>Potential Concerns</h2>
+            <h3>Addiction Risk</h3>
+            <p>Excessive gaming can lead to gaming disorder, characterized by loss of control and prioritizing gaming over other activities.</p>
+
+            <h3>Sleep Disruption</h3>
+            <p>Late-night gaming can interfere with sleep patterns. Blue light from screens suppresses melatonin production, making it harder to fall asleep.</p>
+
+            <h3>Eye Strain & Physical Health</h3>
+            <p>Prolonged screen time can cause digital eye strain, headaches, and blurred vision. Sedentary gaming contributes to less active lifestyles.</p>
+
+            <div class="slide-number">4 of 7</div>
+        </div>
+
+        <!-- Slide 5: Brain Science -->
+        <div class="slide">
+            <h2>What Research Shows</h2>
+            <h3>Brain Structure Changes</h3>
+            <p>Neuroimaging studies reveal that regular gaming can increase gray matter in brain regions associated with memory, strategic planning, and fine motor skills.</p>
+
+            <h3>Neuroplasticity</h3>
+            <p>Video games promote neuroplasticity, the brain's ability to reorganize and form new neural connections. This adaptability can enhance learning capacity throughout life.</p>
+
+            <h3>Game Type Matters</h3>
+            <ul>
+                <li><strong>Action games:</strong> Improve attention and reaction time</li>
+                <li><strong>Puzzle games:</strong> Enhance problem-solving skills</li>
+                <li><strong>Strategy games:</strong> Boost planning abilities</li>
+            </ul>
+
+            <div class="slide-number">5 of 7</div>
+        </div>
+
+        <!-- Slide 6: Healthy Gaming Tips -->
+        <div class="slide">
+            <h2>Healthy Gaming Tips</h2>
+            <h3>Key Recommendations:</h3>
+            <ul>
+                <li><strong>Set Time Limits:</strong> Establish clear boundaries - no more than 1-2 hours per day for children</li>
+                <li><strong>Take Regular Breaks:</strong> Follow the 20-20-20 rule - every 20 minutes, look at something 20 feet away for 20 seconds</li>
+                <li><strong>Choose Games Wisely:</strong> Select games that challenge your mind and teach skills</li>
+                <li><strong>Avoid Late-Night Gaming:</strong> Stop gaming 1-2 hours before bedtime to maintain healthy sleep patterns</li>
+                <li><strong>Maintain Balance:</strong> Ensure gaming doesn't replace physical activity, sleep, or social interaction</li>
+            </ul>
+
+            <div class="slide-number">6 of 7</div>
+        </div>
+
+        <!-- Slide 7: Conclusion -->
+        <div class="slide">
+            <h2>Key Takeaways</h2>
+            <h3>Video games are neither completely good nor bad</h3>
+            <ul>
+                <li>Effects depend on game type, duration, and balance with other activities</li>
+                <li>Action games show strongest cognitive benefits</li>
+                <li>Teenage brains are particularly susceptible to both benefits and risks</li>
+                <li>Moderation and mindful gaming practices are essential</li>
+                <li>Gaming should complement, not replace, other healthy behaviors</li>
+            </ul>
+            <p style="margin-top: 2rem; font-size: 1.3rem; color: #667eea; font-weight: 600; text-align: center;">The key is finding balance and gaming responsibly!</p>
+            <p style="margin-top: 1rem; text-align: center; color: #764ba2;">Your brain is adaptable, but it needs variety, rest, and real-world experiences to thrive.</p>
+
+            <div class="slide-number">7 of 7</div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button onclick="previousSlide()">← Previous</button>
+            <div id="slide-counter">1 / 7</div>
+            <button onclick="nextSlide()">Next →</button>
+        </div>
+        <div class="keyboard-hint">💡 Tip: Use arrow keys (← →) to navigate or click buttons</div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlide].classList.add('active');
+            document.getElementById('slide-counter').textContent = (currentSlide + 1) + ' / ' + totalSlides;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+                e.preventDefault();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+                e.preventDefault();
+            }
+        });
+
+        // Initialize
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
