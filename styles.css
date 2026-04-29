@@ -447,6 +447,19 @@ body {
     font-weight: 400;
 }
 
+.citation a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    word-break: break-word;
+    transition: color 0.3s ease;
+}
+
+.citation a:hover {
+    color: #764ba2;
+    text-decoration: underline;
+}
+
 /* Conclusion Section */
 .conclusion {
     padding: 100px 20px;
